@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:tools="http://schemas.android.com/tools"
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+>>>>>>> upstream/master
     android:id="@+id/ll_speakers"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<<<<<<< HEAD
         <org.fossasia.openevent.views.AutofitGridRecyclerView
             android:id="@+id/rv_speakers"
             android:layout_width="match_parent"
@@ -29,6 +34,14 @@
             android:padding="@dimen/item_margin"
             android:visibility="gone"
             tools:visibility="visible"/>
+=======
+        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+            android:id="@+id/rv_speakers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fastScrollAutoHide="true"
+            app:fastScrollAutoHideDelay="1500" />
+>>>>>>> upstream/master
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

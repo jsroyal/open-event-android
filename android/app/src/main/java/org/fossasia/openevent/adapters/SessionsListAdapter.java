@@ -100,6 +100,7 @@ public class SessionsListAdapter extends BaseRVAdapter<Session, SessionsListAdap
     }
 
     @Override
+<<<<<<< HEAD
     public void onBindViewHolder(final SessionViewHolder holder, int position) {
         final Session session = getItem(position);
         String date = ISO8601Date.getTimeZoneDateString(
@@ -161,6 +162,20 @@ public class SessionsListAdapter extends BaseRVAdapter<Session, SessionsListAdap
                 }
             }
         });
+=======
+    public void onBindViewHolder(ViewHolder.Viewholder holder, int position) {
+        Session current = getItem(position);
+        String title = current.getTitle();
+        String summary = current.getSummary();
+        String date = ISO8601Date.getTimeZoneDateString(ISO8601Date.getDateObject(current.getStartTime())).split(",")[0] + ", " + ISO8601Date.getTimeZoneDateString(ISO8601Date.getDateObject(current.getStartTime())).split(",")[1];
+        holder.getTxtView1().setText(title);
+        holder.getTxtView2().setText(summary);
+        holder.getTxtView3().setText(current.getTrack().getName());
+        holder.getTxtView4().setText(date);
+        holder.getTxtView5().setText(ISO8601Date.get12HourTime(ISO8601Date.getDateObject(current.getStartTime())));
+        holder.getTxtView6().setText(current.getMicrolocation().getName());
+        holder.setItemClickListener(listener);
+>>>>>>> upstream/master
     }
 
     public void refresh() {

@@ -28,6 +28,11 @@ import org.fossasia.openevent.utils.NetworkUtils;
 import org.fossasia.openevent.utils.ShowNotificationSnackBar;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master
 import timber.log.Timber;
 
 /**
@@ -37,6 +42,7 @@ public class SponsorsFragment extends BaseFragment {
 
     private SponsorsListAdapter sponsorsListAdapter;
 
+<<<<<<< HEAD
     @BindView(R.id.txt_no_sponsors)
     TextView noSponsorsView;
     @BindView(R.id.sponsor_swipe_refresh)
@@ -50,15 +56,30 @@ public class SponsorsFragment extends BaseFragment {
     private Toolbar toolbar;
     private AppBarLayout.LayoutParams layoutParams;
     private int SCROLL_OFF = 0;
+=======
+    @BindView(R.id.txt_no_sponsors) TextView noSponsorsView;
+    @BindView(R.id.sponsor_swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.list_sponsors) RecyclerView sponsorsRecyclerView;
+
+    private Unbinder unbinder;
+>>>>>>> upstream/master
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+<<<<<<< HEAD
 
         final View view = super.onCreateView(inflater, container, savedInstanceState);
 
         OpenEventApp.getEventBus().register(this);
+=======
+        final View view = inflater.inflate(R.layout.list_sponsors, container, false);
+        unbinder = ButterKnife.bind(this,view);
+
+        Bus bus = OpenEventApp.getEventBus();
+        bus.register(this);
+>>>>>>> upstream/master
         final DbSingleton dbSingleton = DbSingleton.getInstance();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -98,6 +119,7 @@ public class SponsorsFragment extends BaseFragment {
     }
 
     @Override
+<<<<<<< HEAD
     protected int getLayoutResource() {
         return R.layout.list_sponsors;
     }
@@ -109,6 +131,13 @@ public class SponsorsFragment extends BaseFragment {
         layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
         toolbar.setLayoutParams(layoutParams);
     }
+=======
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+>>>>>>> upstream/master
 
     @Subscribe
     public void sponsorDownloadDone(SponsorDownloadEvent event) {
@@ -134,6 +163,7 @@ public class SponsorsFragment extends BaseFragment {
 
     private void refresh() {
         if (NetworkUtils.haveNetworkConnection(getActivity())) {
+<<<<<<< HEAD
             if (NetworkUtils.isActiveInternetPresent()) {
                 //Internet is working
                 DataDownloadManager.getInstance().downloadSponsors();
@@ -157,6 +187,10 @@ public class SponsorsFragment extends BaseFragment {
                     refresh();
                 }
             }).show();
+=======
+            DataDownloadManager.getInstance().downloadSponsors();
+        } else {
+>>>>>>> upstream/master
             OpenEventApp.getEventBus().post(new SponsorDownloadEvent(true));
         }
     }

@@ -118,6 +118,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.drawer) DrawerLayout drawerLayout;
     @BindView(R.id.appbar) AppBarLayout appBarLayout;
 
+<<<<<<< HEAD
+=======
+    private String errorType;
+    private String errorDesc;
+>>>>>>> upstream/master
     private SharedPreferences sharedPreferences;
     private int counter;
     private boolean atHome = true;
@@ -170,14 +175,29 @@ public class MainActivity extends BaseActivity {
 
         counter = 0;
         eventsDone = 0;
+<<<<<<< HEAD
         ButterKnife.setDebug(true);
+=======
+        setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+        ButterKnife.setDebug(true);
+
+>>>>>>> upstream/master
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setTheme(R.style.AppTheme_NoActionBar_MainTheme);
         super.onCreate(savedInstanceState);
         setUpToolbar();
         setUpNavDrawer();
+<<<<<<< HEAD
         setUpProgressBar();
+=======
+
+        ProgressBar downloadProgress = (ProgressBar) findViewById(R.id.progress);
+        downloadProgress.setVisibility(View.VISIBLE);
+        downloadProgress.setIndeterminate(true);
+>>>>>>> upstream/master
         this.findViewById(android.R.id.content).setBackgroundColor(Color.WHITE);
         if (NetworkUtils.haveNetworkConnection(this)) {
             if (NetworkUtils.isActiveInternetPresent()) {
@@ -213,6 +233,7 @@ public class MainActivity extends BaseActivity {
                                 downloadFromAssets();
                             }
                         }
+<<<<<<< HEAD
                     }).show();
                 } else {
                     downloadProgress.setVisibility(View.GONE);
@@ -230,6 +251,13 @@ public class MainActivity extends BaseActivity {
                 showNotificationSnackBar.showSnackBar();
                 //snow notification
                 showNotificationSnackBar.buildNotification();
+=======
+
+                );
+                downloadDialog.show();
+            } else {
+                downloadProgress.setVisibility(View.GONE);
+>>>>>>> upstream/master
             }
         } else {
             final Snackbar snackbar = Snackbar.make(mainFrame, R.string.display_offline_schedule, Snackbar.LENGTH_LONG);
@@ -464,6 +492,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
+<<<<<<< HEAD
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else if (atHome) {
@@ -483,6 +512,16 @@ public class MainActivity extends BaseActivity {
         } else {
             atHome = true;
             fragmentManager.beginTransaction().replace(R.id.content_frame, new TracksFragment(), FRAGMENT_TAG_TRACKS).commit();
+=======
+        android.support.v4.app.Fragment fragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG_TRACKS);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else if (fragment != null && fragment.isVisible()) {
+            super.onBackPressed();
+        } else {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new TracksFragment(), FRAGMENT_TAG_TRACKS).commit();
+>>>>>>> upstream/master
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle(R.string.menu_tracks);
             }

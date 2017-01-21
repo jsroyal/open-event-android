@@ -549,6 +549,7 @@ public class DatabaseOperations {
         }
 
         sessionCursor.close();
+<<<<<<< HEAD
         StringBuilder builder= new StringBuilder(DbContract.ServerSessionIdMapping.SERVER_ID + IN+"( ");
         for (Integer integer:sortedSessionIds){
             builder.append(integer).append(',');
@@ -568,6 +569,45 @@ public class DatabaseOperations {
                 null,
                 null
         );
+=======
+        String mappingSelection = DbContract.ServerSessionIdMapping.SERVER_ID + EQUAL + speakerSelected;
+        ArrayList<Integer> sessionIds = new ArrayList<>();
+
+        for (int i = 0; i < sortedSessionIds.size(); i++) {
+            Cursor mappingCursor = mDb.query(
+                    DbContract.ServerSessionIdMapping.TABLE_NAME,
+                    DbContract.ServerSessionIdMapping.FULL_PROJECTION,
+                    mappingSelection,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            mappingCursor.moveToFirst();
+            //Should return only one due to UNIQUE constraint
+            while (!mappingCursor.isAfterLast()) {
+                sessionIds.add(mappingCursor.getInt(mappingCursor.getColumnIndex(DbContract.ServerSessionIdMapping.LOCAL_ID)));
+                mappingCursor.moveToNext();
+            }
+
+            mappingCursor.close();
+        }
+
+
+        ArrayList<Session> sessions = new ArrayList<>();
+        for (int i = 0; i < sessionIds.size(); i++) {
+            String sessionTableColumnSelection = DbContract.Sessions.ID + EQUAL + sessionIds.get(i);
+            Cursor sessionTableCursor = mDb.query(
+                    DbContract.Sessions.TABLE_NAME,
+                    DbContract.Sessions.FULL_PROJECTION,
+                    sessionTableColumnSelection,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+>>>>>>> upstream/master
 
         mappingCursor.moveToFirst();
         //Should return only one due to UNIQUE constraint
@@ -623,9 +663,16 @@ public class DatabaseOperations {
                 } catch (ParseException e) {
                     Timber.e("Parsing Error Occurred at DatabaseOperations::getSessionbySpeakersname.");
                 }
+<<<<<<< HEAD
             }while (sessionTableCursor.moveToNext());
             sessionTableCursor.close();
 
+=======
+                sessionTableCursor.moveToNext();
+                sessionTableCursor.close();
+
+            }
+>>>>>>> upstream/master
         }
 
         return sessions;

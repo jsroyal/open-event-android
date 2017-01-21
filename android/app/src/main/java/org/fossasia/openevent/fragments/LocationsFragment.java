@@ -32,6 +32,10 @@ import org.fossasia.openevent.events.RefreshUiEvent;
 
 import butterknife.BindView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * User: MananWason
  * Date: 8/18/2015
@@ -43,12 +47,14 @@ public class LocationsFragment extends BaseFragment implements SearchView.OnQuer
     @BindView(R.id.list_locations) RecyclerView locationsRecyclerView;
     @BindView(R.id.txt_no_microlocations) TextView noMicrolocationsView;
 
+    private Unbinder unbinder;
     private LocationsListAdapter locationsListAdapter;
 
     private String searchText = "";
 
     private SearchView searchView;
 
+<<<<<<< HEAD
     private Toolbar toolbar;
     private AppBarLayout.LayoutParams layoutParams;
     private int SCROLL_OFF = 0;
@@ -58,6 +64,13 @@ public class LocationsFragment extends BaseFragment implements SearchView.OnQuer
         setHasOptionsMenu(true);
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
+=======
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        View view = inflater.inflate(R.layout.list_locations, container, false);
+        unbinder = ButterKnife.bind(this,view);
+>>>>>>> upstream/master
 
         OpenEventApp.getEventBus().register(this);
 
@@ -69,6 +82,7 @@ public class LocationsFragment extends BaseFragment implements SearchView.OnQuer
             }
         });
 
+<<<<<<< HEAD
 
         //setting the grid layout to cut-off white space in tablet view
         DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
@@ -91,6 +105,12 @@ public class LocationsFragment extends BaseFragment implements SearchView.OnQuer
                 }
                 locationsRecyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
                 return false;
+=======
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+>>>>>>> upstream/master
             }
         });
 
@@ -178,9 +198,13 @@ public class LocationsFragment extends BaseFragment implements SearchView.OnQuer
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+<<<<<<< HEAD
         OpenEventApp.getEventBus().unregister(this);
         layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
         toolbar.setLayoutParams(layoutParams);
+=======
+        unbinder.unbind();
+>>>>>>> upstream/master
     }
 
     @Subscribe

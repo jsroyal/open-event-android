@@ -2,6 +2,10 @@ package org.fossasia.openevent.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+>>>>>>> upstream/master
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -33,12 +37,20 @@ import org.fossasia.openevent.events.RefreshUiEvent;
 import org.fossasia.openevent.events.SessionDownloadEvent;
 import org.fossasia.openevent.utils.ConstantStrings;
 import org.fossasia.openevent.utils.NetworkUtils;
+<<<<<<< HEAD
 import org.fossasia.openevent.utils.ShowNotificationSnackBar;
+=======
+>>>>>>> upstream/master
 import org.fossasia.openevent.utils.SortOrder;
 
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master
 
 /**
  * Created by Manan Wason on 17/06/16.
@@ -58,27 +70,49 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
 
     private DayScheduleAdapter dayScheduleAdapter;
 
+    private Unbinder unbinder;
+
     private String date;
 
     private int sortType;
 
     private SharedPreferences sharedPreferences;
 
+<<<<<<< HEAD
     private Snackbar snackbar;
 
+=======
+>>>>>>> upstream/master
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         date = getArguments().getString(ConstantStrings.EVENT_DAY, "");
+
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    public void onResume() {
+        super.onResume();
+        refreshData(new RefreshUiEvent());
+
+    }
+
+    @Override
+>>>>>>> upstream/master
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         sortType = sharedPreferences.getInt(ConstantStrings.PREF_SORT, 0);
+<<<<<<< HEAD
         View view = super.onCreateView(inflater, container, savedInstanceState);
+=======
+
+        View view = inflater.inflate(R.layout.list_schedule, container, false);
+        unbinder = ButterKnife.bind(this,view);
+>>>>>>> upstream/master
 
         /**
          * Loading data in background to improve performance.
@@ -87,6 +121,7 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
             @Override
             public void run() {
                 final List<Session> sortedSessions = DbSingleton.getInstance().getSessionbyDate(date, SortOrder.sortOrderSchedule(getActivity()));
+<<<<<<< HEAD
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -100,6 +135,32 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
                             dayRecyclerView.setAdapter(dayScheduleAdapter);
                             dayScheduleAdapter.setEventDate(date);
                         }
+=======
+                dayRecyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!sortedSessions.isEmpty()) {
+                            noSchedule.setVisibility(View.GONE);
+                        } else {
+                            noSchedule.setVisibility(View.VISIBLE);
+                        }
+                        dayScheduleAdapter = new DayScheduleAdapter(sortedSessions, getContext());
+                        dayRecyclerView.setAdapter(dayScheduleAdapter);
+                        dayScheduleAdapter.setOnClickListener(new DayScheduleAdapter.SetOnClickListener() {
+                            @Override
+                            public void onItemClick(int position, View view) {
+                                Session model = dayScheduleAdapter.getItem(position);
+                                String sessionName = model.getTitle();
+                                Track track = DbSingleton.getInstance().getTrackbyId(model.getTrack().getId());
+                                String trackName = track.getName();
+                                Intent intent = new Intent(getContext(), SessionDetailActivity.class);
+                                intent.putExtra(ConstantStrings.SESSION, sessionName);
+                                intent.putExtra(ConstantStrings.TRACK, trackName);
+                                startActivity(intent);
+                            }
+                        });
+                        dayScheduleAdapter.setEventDate(date);
+>>>>>>> upstream/master
                     }
                 });
             }
@@ -186,6 +247,7 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
     }
 
     @Override
+<<<<<<< HEAD
     public boolean onQueryTextChange(String query) {
         if (!TextUtils.isEmpty(query)) {
             searchText = query;
@@ -201,6 +263,13 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
+=======
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+>>>>>>> upstream/master
 
     @Subscribe
     public void refreshData(RefreshUiEvent event) {
@@ -228,6 +297,7 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
                         refresh();
                     }
                 }).show();
+<<<<<<< HEAD
             }
         }
     }
@@ -253,11 +323,24 @@ public class DayScheduleFragment extends BaseFragment implements SearchView.OnQu
                 snackbar = showNotificationSnackBar.showSnackBar();
                 //show notification
                 showNotificationSnackBar.buildNotification();
+=======
+>>>>>>> upstream/master
             }
         } else {
             OpenEventApp.getEventBus().post(new SessionDownloadEvent(false));
         }
     }
 
+<<<<<<< HEAD
+=======
+    private void refresh() {
+        if (NetworkUtils.haveNetworkConnection(getContext())) {
+            DataDownloadManager.getInstance().downloadSession();
+        } else {
+            OpenEventApp.getEventBus().post(new SessionDownloadEvent(false));
+        }
+    }
+
+>>>>>>> upstream/master
 
 }

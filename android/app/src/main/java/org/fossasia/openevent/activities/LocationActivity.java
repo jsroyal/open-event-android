@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+>>>>>>> upstream/master
 import timber.log.Timber;
 
 /**
@@ -50,7 +54,15 @@ public class LocationActivity extends BaseActivity implements SearchView.OnQuery
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
 
+=======
+        setContentView(R.layout.activity_locations);
+        ButterKnife.bind(this);
+
+        final DbSingleton dbSingleton = DbSingleton.getInstance();
+        location = getIntent().getStringExtra(ConstantStrings.MICROLOCATIONS);
+>>>>>>> upstream/master
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,6 +72,7 @@ public class LocationActivity extends BaseActivity implements SearchView.OnQuery
         }
     }
 
+<<<<<<< HEAD
     @Override
     protected void onResume() {
         super.onResume();
@@ -67,6 +80,8 @@ public class LocationActivity extends BaseActivity implements SearchView.OnQuery
         final DbSingleton dbSingleton = DbSingleton.getInstance();
         location = getIntent().getStringExtra(ConstantStrings.MICROLOCATIONS);
         Microlocation selectedLocation = dbSingleton.getLocationByLocationname(location);
+=======
+>>>>>>> upstream/master
         mSessions = dbSingleton.getSessionbyLocationName(location);
 
         //setting the grid layout to cut-off white space in tablet view

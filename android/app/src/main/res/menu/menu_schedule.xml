@@ -9,10 +9,18 @@
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
+<<<<<<< HEAD
         app:showAsAction="collapseActionView|ifRoom" />
+=======
+        app:showAsAction="always" />
+>>>>>>> upstream/master
     <item
         android:id="@+id/action_sort_schedule"
         android:icon="@drawable/ic_sort_white_24dp"
         android:title="@string/menu_speaker_sort"
+<<<<<<< HEAD
         app:showAsAction="collapseActionView|ifRoom" />
+=======
+        app:showAsAction="always" />
+>>>>>>> upstream/master
 </menu>

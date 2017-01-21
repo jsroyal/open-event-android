@@ -1,8 +1,11 @@
 package org.fossasia.openevent.adapters;
 
 import android.content.Context;
+<<<<<<< HEAD
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+=======
+>>>>>>> upstream/master
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,10 @@ import org.fossasia.openevent.dbutils.DbSingleton;
 import org.fossasia.openevent.utils.ConstantStrings;
 import org.fossasia.openevent.utils.ISO8601Date;
 import org.fossasia.openevent.utils.SortOrder;
+<<<<<<< HEAD
+=======
+import org.fossasia.openevent.utils.ViewHolder;
+>>>>>>> upstream/master
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +36,17 @@ import timber.log.Timber;
 /**
  * Created by Manan Wason on 17/06/16.
  */
+<<<<<<< HEAD
 public class DayScheduleAdapter extends BaseRVAdapter<Session, DayScheduleAdapter.DayScheduleViewHolder> {
 
     private Context context;
     private String eventDate;
 
+=======
+public class DayScheduleAdapter extends BaseRVAdapter<Session, ViewHolder.Viewholder> {
+
+    private Context context;
+>>>>>>> upstream/master
     @SuppressWarnings("all")
     Filter filter = new Filter() {
         @Override
@@ -61,9 +74,23 @@ public class DayScheduleAdapter extends BaseRVAdapter<Session, DayScheduleAdapte
         }
     };
 
+<<<<<<< HEAD
     public DayScheduleAdapter(List<Session> sessions, Context context) {
         super(sessions);
         this.context = context;
+=======
+    private ViewHolder.SetOnClickListener listener;
+
+    private String eventDate;
+
+    public DayScheduleAdapter(List<Session> sessions, Context context) {
+        super(sessions);
+        this.context = context;
+    }
+
+    public void setOnClickListener(ViewHolder.SetOnClickListener clickListener) {
+        this.listener = clickListener;
+>>>>>>> upstream/master
     }
 
     public void setEventDate(String eventDate) {
@@ -103,7 +130,11 @@ public class DayScheduleAdapter extends BaseRVAdapter<Session, DayScheduleAdapte
 
     public void refresh() {
         clear();
+<<<<<<< HEAD
         animateTo(DbSingleton.getInstance().getSessionbyDate(eventDate, SortOrder.sortOrderSchedule(context)));
+=======
+        animateTo(dbSingleton.getSessionbyDate(eventDate, SortOrder.sortOrderSchedule(context)));
+>>>>>>> upstream/master
     }
 
     @Override

@@ -40,11 +40,18 @@ public class OpenEventApp extends Application {
     public static final String API_LINK = "Api_Link";
     public static final String EMAIL = "Email";
     public static final String APP_NAME = "App_Name";
+<<<<<<< HEAD
     public static String sDefSystemLanguage;
     static Handler handler;
     private static Bus eventBus;
     private static Context context;
     private MapModuleFactory mapModuleFactory;
+=======
+    static Handler handler;
+    private static Bus eventBus;
+    private static Context context;
+    MapModuleFactory mapModuleFactory;
+>>>>>>> upstream/master
     SharedPreferences sharedPreferences;
 
     public static Bus getEventBus() {

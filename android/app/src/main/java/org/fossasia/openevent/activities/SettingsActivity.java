@@ -50,6 +50,11 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         internetPreference.setOnPreferenceChangeListener(this);
         timezonePreference = (SwitchPreference) preferenceScreen.findPreference(getResources().getString(R.string.timezone_mode_key));
         timezonePreference.setOnPreferenceChangeListener(this);
+<<<<<<< HEAD
+=======
+
+        prefNotification = findPreference(NOTIFICATION_PREF_MODE);
+>>>>>>> upstream/master
 
         prefNotification = findPreference(NOTIFICATION_PREF_MODE);
         languagePreference=findPreference(LANGUAGE_PREF_MODE);
@@ -71,10 +76,13 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             } else if (o.equals(true)) {
                 timezonePreference.setChecked(true);
             }
+<<<<<<< HEAD
         } else if (preference.getKey().equals(getResources().getString(R.string.notification_key))) {
             prefNotification.setSummary((String) o);
         } else if (preference.getKey().equals(getResources().getString(R.string.language_key))) {
             languagePreference.setSummary((String) o);
+=======
+>>>>>>> upstream/master
         }
 
         return false;

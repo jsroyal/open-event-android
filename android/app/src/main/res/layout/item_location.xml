@@ -7,7 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/card_margin_vertical"
     android:layout_marginTop="@dimen/card_margin_vertical"
+<<<<<<< HEAD
     android:baselineAligned="false"
+=======
+>>>>>>> upstream/master
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical">
 
@@ -21,9 +24,14 @@
         <TextView
             android:id="@+id/location_name"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Title"
             android:textStyle="bold" />
+=======
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+>>>>>>> upstream/master
 
         <TextView
             android:id="@+id/location_floor"

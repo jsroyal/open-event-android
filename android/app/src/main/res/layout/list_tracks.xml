@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tracks_frame"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="match_parent">
+=======
+    android:layout_height="match_parent"
+    >
+>>>>>>> upstream/master
 
     <TextView
         android:id="@+id/txt_no_tracks"

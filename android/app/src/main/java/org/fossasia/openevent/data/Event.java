@@ -38,7 +38,11 @@ public class Event {
     @SerializedName("event_url")
     private String url;
 
+<<<<<<< HEAD
     private String timezone;
+=======
+    String timezone;
+>>>>>>> upstream/master
 
     private Version version;
 

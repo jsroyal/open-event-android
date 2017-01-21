@@ -4,8 +4,13 @@
     android:layout_height="72dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:baselineAligned="false"
+<<<<<<< HEAD
     android:clickable="true"
     tools:showIn="@layout/list_tracks"
+=======
+    android:paddingBottom="5dp"
+    android:clickable="true"
+>>>>>>> upstream/master
     android:focusable="true"
     android:background="?attr/selectableItemBackground"
     android:orientation="horizontal">
@@ -13,12 +18,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:layout_marginTop="@dimen/item_margin"
         android:layout_marginBottom="@dimen/item_margin"
         android:layout_marginRight="@dimen/content_margin"
         android:layout_marginLeft="@dimen/content_margin"
         android:orientation="vertical"
         android:gravity="center">
+=======
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+>>>>>>> upstream/master
 
         <TextView
             android:id="@+id/track_title"

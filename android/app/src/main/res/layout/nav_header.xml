@@ -5,7 +5,10 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="4dp"
+<<<<<<< HEAD
     android:background="@color/color_primary"
+=======
+>>>>>>> upstream/master
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView

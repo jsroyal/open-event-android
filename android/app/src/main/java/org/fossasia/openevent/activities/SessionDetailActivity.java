@@ -18,7 +18,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+<<<<<<< HEAD
 import android.text.Spanned;
+=======
+>>>>>>> upstream/master
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +44,10 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+>>>>>>> upstream/master
 import timber.log.Timber;
 
 /**
@@ -86,9 +93,26 @@ public class SessionDetailActivity extends BaseActivity {
 
     private Spanned result;
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.title_session) TextView text_title;
+    @BindView(R.id.subtitle_session) TextView text_subtitle;
+    @BindView(R.id.tv_time) TextView text_time;
+    @BindView(R.id.track) TextView text_track;
+    @BindView(R.id.tv_location) TextView text_room1;
+    @BindView(R.id.tv_abstract_text) TextView summary;
+    @BindView(R.id.tv_description) TextView descrip;
+    @BindView(R.id.list_speakerss) RecyclerView speakersRecyclerView;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+=======
+        setContentView(R.layout.activity_sessions_detail);
+
+        ButterKnife.bind(this);
+>>>>>>> upstream/master
 
         DbSingleton dbSingleton = DbSingleton.getInstance();
         setSupportActionBar(toolbar);
@@ -148,6 +172,7 @@ public class SessionDetailActivity extends BaseActivity {
 
         }
         summary.setText(session.getSummary());
+<<<<<<< HEAD
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             result = Html.fromHtml(session.getDescription(), Html.FROM_HTML_MODE_LEGACY);
@@ -155,6 +180,9 @@ public class SessionDetailActivity extends BaseActivity {
             result = Html.fromHtml(session.getDescription());
         }
         descrip.setText(result);
+=======
+        descrip.setText(Html.fromHtml(session.getDescription()));
+>>>>>>> upstream/master
 
         adapter = new SpeakersListAdapter(speakers, this);
 

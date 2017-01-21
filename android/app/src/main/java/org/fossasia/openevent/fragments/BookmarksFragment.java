@@ -32,6 +32,11 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master
 import timber.log.Timber;
 
 /**
@@ -44,12 +49,19 @@ public class BookmarksFragment extends BaseFragment implements SearchView.OnQuer
     final private String SEARCH = "org.fossasia.openevent.searchText";
     SessionsListAdapter sessionsListAdapter;
 
+<<<<<<< HEAD
     private String searchText = "";
 
     private SearchView searchView;
 
     @BindView(R.id.list_bookmarks) RecyclerView bookmarkedTracks;
 
+=======
+    @BindView(R.id.list_bookmarks) RecyclerView bookmarkedTracks;
+
+    private Unbinder unbinder;
+
+>>>>>>> upstream/master
     View view;
     ArrayList<Integer> bookmarkedIds;
     private LinearLayoutManager linearLayoutManager;
@@ -97,8 +109,14 @@ public class BookmarksFragment extends BaseFragment implements SearchView.OnQuer
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Timber.i("Bookmarks Fragment create view");
         setHasOptionsMenu(true);
+<<<<<<< HEAD
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
+=======
+        view = inflater.inflate(R.layout.fragment_bookmarks, container, false);
+
+        unbinder = ButterKnife.bind(this,view);
+>>>>>>> upstream/master
 
         final DbSingleton dbSingleton = DbSingleton.getInstance();
 
@@ -219,5 +237,11 @@ public class BookmarksFragment extends BaseFragment implements SearchView.OnQuer
         super.onDestroy();
         layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
         toolbar.setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

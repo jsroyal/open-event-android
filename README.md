@@ -78,7 +78,11 @@ The App Generator is a simple one-page HTML webpage that allows the user to inpu
 2. E-Mail address where the generated app will be sent to
 3. a) Either a zip with all event data including JSON data and binary image and audio files or b) an API Link providing the same information as the zip file
 
+<<<<<<< HEAD
 The Generator needs to be hosted on a server backed up by a PHP script which in turn executes Python and Bash scripts which start the app's build process. After the app is generated, it is emailed to the user using [Mutt](http://www.mutt.org/) and [MSMTP](http://msmtp.sourceforge.net/).
+=======
+The Generator needs to be hosted on a server backed up by PHP script which in turn executes python and Bash scripts which start the app's build process. After the app is generated, it is emailed to the user using [Mutt](http://www.mutt.org/) and [MSMTP](http://msmtp.sourceforge.net/).
+>>>>>>> upstream/master
 
 For the API part, the app does not use Firebase for sending data to the server, instead the app directly sends data to `api.php` in the API call. Digging deeper in the code of `api.php`, first the app checks for a valid request (GET/POST) and throws an error if it is invalid. Next, for a valid request the app stores the body into a variable and then executes a follow-up script.
 

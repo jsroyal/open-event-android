@@ -36,6 +36,11 @@ import org.fossasia.openevent.utils.ShowNotificationSnackBar;
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master
 
 /**
  * User: MananWason
@@ -52,10 +57,16 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
     @BindView(R.id.list_tracks) RecyclerView tracksRecyclerView;
     @BindView(R.id.tracks_frame) View windowFrame;
 
+<<<<<<< HEAD
+=======
+    private Unbinder unbinder;
+
+>>>>>>> upstream/master
     private String searchText = "";
 
     private SearchView searchView;
 
+<<<<<<< HEAD
     private DbSingleton dbSingleton;
 
     private Snackbar snackbar;
@@ -63,10 +74,14 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
     private Toolbar toolbar;
     private AppBarLayout.LayoutParams layoutParams;
     private int SCROLL_OFF = 0;
+=======
+
+>>>>>>> upstream/master
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+<<<<<<< HEAD
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -74,6 +89,27 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
         dbSingleton = DbSingleton.getInstance();
         List<Track> mTracks = dbSingleton.getTrackList();
         setVisibility();
+=======
+        View view = inflater.inflate(R.layout.list_tracks, container, false);
+        unbinder = ButterKnife.bind(this,view);
+
+        OpenEventApp.getEventBus().register(this);
+        DbSingleton dbSingleton = DbSingleton.getInstance();
+        List<Track> mTracks = dbSingleton.getTrackList();
+        tracksListAdapter = new TracksListAdapter(mTracks);
+        tracksRecyclerView.setAdapter(tracksListAdapter);
+        setVisibility(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(ConstantStrings.IS_DOWNLOAD_DONE, true));
+        tracksListAdapter.setOnClickListener(new TracksListAdapter.SetOnClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                Track model = tracksListAdapter.getItem(position);
+                String trackTitle = model.getName();
+                Intent intent = new Intent(getContext(), TracksActivity.class);
+                intent.putExtra(ConstantStrings.TRACK, trackTitle);
+                startActivity(intent);
+            }
+        });
+>>>>>>> upstream/master
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -122,6 +158,7 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
     }
 
     @Override
+<<<<<<< HEAD
     protected int getLayoutResource() {
         return R.layout.list_tracks;
     }
@@ -132,6 +169,11 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
         OpenEventApp.getEventBus().unregister(this);
         layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
         toolbar.setLayoutParams(layoutParams);
+=======
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+>>>>>>> upstream/master
     }
 
     @Override
@@ -146,6 +188,18 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+<<<<<<< HEAD
+=======
+        switch (item.getItemId()) {
+            case R.id.share_tracks_url:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, Urls.WEB_APP_URL_BASIC + Urls.TRACKS);
+                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_links);
+                intent.setType("text/plain");
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.share_links)));
+                return true;
+        }
+>>>>>>> upstream/master
         return super.onOptionsItemSelected(item);
     }
 
@@ -201,6 +255,7 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
                         refresh();
                     }
                 }).show();
+<<<<<<< HEAD
             }
         }
     }
@@ -230,10 +285,22 @@ public class TracksFragment extends BaseFragment implements SearchView.OnQueryTe
         } else {
             if (snackbar!=null && snackbar.isShown()) {
                 snackbar.dismiss();
+=======
+>>>>>>> upstream/master
             }
             OpenEventApp.getEventBus().post(new TracksDownloadEvent(false));
         }
         setVisibility();
+    }
+
+    private void refresh() {
+        if (NetworkUtils.haveNetworkConnection(getActivity())) {
+            DataDownloadManager.getInstance().downloadTracks();
+            setVisibility(true);
+        } else {
+            OpenEventApp.getEventBus().post(new TracksDownloadEvent(false));
+            setVisibility(false);
+        }
     }
 
 }

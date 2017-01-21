@@ -27,11 +27,19 @@ public final class ISO8601Date {
      * Transform Calendar to ISO 8601 string.
      */
 
+<<<<<<< HEAD
     private static String eventTimezone = "";
     private static final String TIMEZONE_MODE = "timezone_mode";
 
 
     private static String fromCalendar(final Calendar calendar) {
+=======
+    public static String eventTimezone = "";
+    public static final String TIMEZONE_MODE = "timezone_mode";
+
+
+    public static String fromCalendar(final Calendar calendar) {
+>>>>>>> upstream/master
         Date date = calendar.getTime();
         String formatted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault())
                 .format(date);
@@ -49,17 +57,31 @@ public final class ISO8601Date {
     public static String dateFromCalendar(Calendar currentDate) {
         return fromCalendar(currentDate).split("T")[0];
     }
+<<<<<<< HEAD
 
 
     public static String getTimeZoneDateString(final Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EE, dd MMM yyyy, HH:mm, z", Locale.getDefault());
         dateFormat.setTimeZone(getEventTimezone());
         return dateFormat.format(date);
+=======
+
+
+    public static String getTimeZoneDateString(final Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EE, dd MMM yyyy, HH:mm, z");
+        dateFormat.setTimeZone(getEventTimezone());
+        String DateToStr = dateFormat.format(date);
+        return DateToStr;
+>>>>>>> upstream/master
     }
 
     public static Date getTimeZoneDate(final Date date) {
 
+<<<<<<< HEAD
         SimpleDateFormat dateFormat = new SimpleDateFormat("EE, dd MMM yyyy, HH:mm, z", Locale.getDefault());
+=======
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EE, dd MMM yyyy, HH:mm, z");
+>>>>>>> upstream/master
         dateFormat.setTimeZone(getEventTimezone());
         String DateToStr = dateFormat.format(date);
         return date;
@@ -67,14 +89,22 @@ public final class ISO8601Date {
 
     public static String get24HourTime(final Date date) {
 
+<<<<<<< HEAD
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm ", Locale.getDefault());
+=======
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm ");
+>>>>>>> upstream/master
         dateFormat.setTimeZone(getEventTimezone());
         return dateFormat.format(date);
     }
 
     public static String get12HourTime(final Date date) {
 
+<<<<<<< HEAD
         SimpleDateFormat dateFormat = new SimpleDateFormat("KK:mm a", Locale.getDefault());
+=======
+        SimpleDateFormat dateFormat = new SimpleDateFormat("KK:mm a");
+>>>>>>> upstream/master
         dateFormat.setTimeZone(getEventTimezone());
         return dateFormat.format(date);
     }
@@ -102,7 +132,11 @@ public final class ISO8601Date {
         return date;
     }
 
+<<<<<<< HEAD
     private static TimeZone getEventTimezone() {
+=======
+    public static TimeZone getEventTimezone() {
+>>>>>>> upstream/master
         TimeZone selected;
         if (!PreferenceManager.getDefaultSharedPreferences(OpenEventApp.getAppContext()).getBoolean(TIMEZONE_MODE, false)) {
             setEventTimezone();
@@ -111,10 +145,17 @@ public final class ISO8601Date {
             selected = TimeZone.getDefault();
         }
         return selected;
+<<<<<<< HEAD
 
     }
 
     private static void setEventTimezone() {
+=======
+
+    }
+
+    public static void setEventTimezone() {
+>>>>>>> upstream/master
         if (eventTimezone.isEmpty()) {
             Event event = DbSingleton.getInstance().getEventDetails();
             ISO8601Date.eventTimezone = (event.getTimezone());

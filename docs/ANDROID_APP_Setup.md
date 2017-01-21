@@ -13,6 +13,11 @@ Before you begin, you should already have the Android Studio SDK downloaded and 
 # Setting up the Android Project
 
 1. Download the _open-event-android_ project source. You can do this either by forking and cloning the repository (recommended if you plan on pushing changes) or by downloading it as a ZIP file and extracting it.
+<<<<<<< HEAD
+=======
+
+2. Open Android Studio, you will see a **Welcome to Android** window. Under Quick Start, select _Import Project (Eclipse ADT, Gradle, etc.)_
+>>>>>>> upstream/master
 
 2. Open Android Studio, you will see a **Welcome to Android** window. Under Quick Start, select _Import Project (Eclipse ADT, Gradle, etc.)_
 
@@ -63,7 +68,11 @@ Before you begin, you should already have the Android Studio SDK downloaded and 
 
 - _Translations Editor_:
 
+<<<<<<< HEAD
   - You can configure the string localizations / translations using Android Studio's _Translations Editor_.
+=======
+  - You can configure the string localizaions / translations using Android Studio's _Translations Editor_.
+>>>>>>> upstream/master
   - Find /app/src/main/res/values/strings.xml
   - Right click on the file, and select _Open Translations Editor_.
 

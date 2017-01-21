@@ -17,6 +17,11 @@ import org.fossasia.openevent.utils.Days;
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< HEAD
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master
 
 /**
  * Created by Manan Wason on 16/06/16.
@@ -26,12 +31,22 @@ public class ScheduleFragment extends BaseFragment {
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabLayout) TabLayout scheduleTabLayout;
 
+    @BindView(R.id.viewpager) ViewPager viewPager;
+    @BindView(R.id.tabLayout) TabLayout scheduleTabLayout;
+
+    private Unbinder unbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+<<<<<<< HEAD
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
+=======
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        unbinder = ButterKnife.bind(this,view);
+>>>>>>> upstream/master
 
         OpenEventApp.getEventBus().register(true);
 
@@ -41,8 +56,30 @@ public class ScheduleFragment extends BaseFragment {
     }
 
     @Override
+<<<<<<< HEAD
     protected int getLayoutResource() {
         return R.layout.fragment_schedule;
+=======
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+>>>>>>> upstream/master
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -58,5 +95,9 @@ public class ScheduleFragment extends BaseFragment {
         viewPager.setAdapter(adapter);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 }
 

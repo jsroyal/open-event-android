@@ -26,7 +26,11 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
 
+=======
+import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
 import com.squareup.otto.Subscribe;
 
 import org.fossasia.openevent.OpenEventApp;
@@ -44,6 +48,11 @@ import org.fossasia.openevent.views.MarginDecoration;
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
+=======
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
 import timber.log.Timber;
 
 import static org.fossasia.openevent.utils.SortOrder.sortOrderSpeaker;
@@ -58,7 +67,13 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
 
     @BindView(R.id.speaker_swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.txt_no_speakers)  TextView noSpeakersView;
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
     @BindView(R.id.rv_speakers) RecyclerView speakersRecyclerView;
+=======
+    @BindView(R.id.rv_speakers) FastScrollRecyclerView speakersRecyclerView;
+
+    private Unbinder unbinder;
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
 
     private SpeakersListAdapter speakersListAdapter;
 
@@ -81,11 +96,22 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         OpenEventApp.getEventBus().register(this);
 
+=======
+        View view = inflater.inflate(R.layout.list_speakers, container, false);
+        unbinder = ButterKnife.bind(this,view);
+
+        OpenEventApp.getEventBus().register(this);
+
+        speakersRecyclerView.setThumbColor(getResources().getColor(R.color.color_primary));
+        speakersRecyclerView.setPopupBgColor(getResources().getColor(R.color.color_primary));
+
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
         final DbSingleton dbSingleton = DbSingleton.getInstance();
         final List<Speaker> mSpeakers = dbSingleton.getSpeakerList(sortOrderSpeaker(getActivity()));
         prefsSort = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -110,6 +136,10 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
                 return false;
             }
         });
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
+=======
+
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -131,6 +161,7 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
     }
 
     @Override
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
     protected int getLayoutResource() {
         return R.layout.list_speakers;
     }
@@ -141,6 +172,11 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
         OpenEventApp.getEventBus().unregister(this);
         layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
         toolbar.setLayoutParams(layoutParams);
+=======
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
     }
 
     @Override
@@ -217,6 +253,7 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
 
     private void refresh() {
         if (NetworkUtils.haveNetworkConnection(getActivity())) {
+<<<<<<< HEAD:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakersListFragment.java
             if (NetworkUtils.isActiveInternetPresent()) {
                 //Internet is working
                 DataDownloadManager.getInstance().downloadSpeakers();
@@ -237,6 +274,9 @@ public class SpeakersListFragment extends BaseFragment implements SearchView.OnQ
                 //show notification
                 showNotificationSnackBar.buildNotification();
             }
+=======
+            DataDownloadManager.getInstance().downloadSpeakers();
+>>>>>>> upstream/master:android/app/src/main/java/org/fossasia/openevent/fragments/SpeakerFragment.java
         } else {
             OpenEventApp.getEventBus().post(new SpeakerDownloadEvent(false));
         }
